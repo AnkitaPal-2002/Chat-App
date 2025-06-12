@@ -17,6 +17,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 
 import './App.css'
 import { useAuthStore } from './store/useAuthStore';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
  const {authUser, checkAuth, isCheckingAuth} = useAuthStore();
@@ -67,6 +68,7 @@ function App() {
 
       </Routes>
 
+      <Toaster/>
     </div>
 
   )

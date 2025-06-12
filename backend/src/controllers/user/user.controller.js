@@ -108,6 +108,8 @@ const logoutUser = async (req, res) => {
 const updateProfile = async (req, res) => {
     //console.log("updateProfile called");
     try {
+        console.log(req.body);
+        
         const { profilePic } = req.body;
         const userId = req.user.id;
 
@@ -130,6 +132,8 @@ const updateProfile = async (req, res) => {
 
 
     } catch (error) {
+        console.log("Error updating profile:", error);
+        
         res.status(500).json({ message: "Error updating profile" });
     }
 
