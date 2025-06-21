@@ -14,24 +14,26 @@ const Navbar = () => {
       {/* Right Side: Conditional Buttons */}
       <div className="flex items-center space-x-4 text-[#4B0082]">
         {/* Settings - always visible */}
+            <Link to="/settings">
         <button className="flex items-center gap-1 hover:text-[#8B5CF6] transition">
           <Settings size={18} />
           <span className="text-sm">
-            <Link to="/settings">
             Settings
-            </Link>
             </span>
         </button>
+            </Link>
 
         {/* Shown only if authenticated */}
         {authUser && (
           <>
+                <Link to="/profile">
             <button className="flex items-center gap-1 hover:text-[#8B5CF6] transition">
               <User size={18} />
               <span className="text-sm">
-                <Link to="/profile">Profile</Link>
+                Profile
                 </span>
             </button>
+                </Link>
             <button
               onClick={logout}
               className="flex items-center gap-1 hover:text-[#8B5CF6] transition"

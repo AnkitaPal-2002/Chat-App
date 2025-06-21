@@ -108,7 +108,7 @@ const logoutUser = async (req, res) => {
 const updateProfile = async (req, res) => {
     //console.log("updateProfile called");
     try {
-        console.log(req.body);
+        //console.log(req.body);
         
         const { profilePic } = req.body;
         const userId = req.user.id;

@@ -27,23 +27,22 @@ const LoginPage = () => {
   });
 
   const onSubmit = (data) => {
-    console.log("Logging in with:", data);
     login(data);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
-      <div className="flex w-full max-w-6xl shadow-2xl rounded-2xl overflow-hidden bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 px-4 transition-colors duration-300">
+      <div className="flex w-full max-w-6xl shadow-2xl rounded-2xl overflow-hidden bg-white dark:bg-gray-800 transition-colors duration-300">
 
         {/* Left Side - Login Form */}
         <div className="w-full md:w-1/2 p-8 md:p-12">
-          <h1 className="text-3xl font-bold text-center text-[#4B0082] mb-6">Log In to AuraChat</h1>
+          <h1 className="text-3xl font-bold text-center text-[#4B0082] dark:text-white mb-6">Log In to AuraChat</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[#4B0082] mb-1">Email Address</label>
+              <label htmlFor="email" className="block text-sm font-medium text-[#4B0082] dark:text-gray-200 mb-1">Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 text-[#A78BFA]" size={18} />
                 <input
@@ -51,7 +50,9 @@ const LoginPage = () => {
                   type="email"
                   {...register('email')}
                   placeholder="you@example.com"
-                  className={`w-full pl-10 border rounded-lg px-3 py-2 focus:outline-none transition focus:ring-2 text-[#4B0082] bg-white ${errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-[#D8B4FE]'}`}
+                  className={`w-full pl-10 border rounded-lg px-3 py-2 focus:outline-none transition focus:ring-2 text-[#4B0082] bg-white dark:bg-gray-900 dark:text-white ${
+                    errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-[#D8B4FE]'
+                  }`}
                 />
               </div>
               {errors.email && (
@@ -61,7 +62,7 @@ const LoginPage = () => {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-[#4B0082] mb-1">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-[#4B0082] dark:text-gray-200 mb-1">Password</label>
               <div className="relative">
                 <KeyRound className="absolute left-3 top-2.5 text-[#A78BFA]" size={18} />
                 <input
@@ -69,7 +70,9 @@ const LoginPage = () => {
                   type={showPassword ? 'text' : 'password'}
                   {...register('password')}
                   placeholder="••••••••"
-                  className={`w-full pl-10 pr-10 border rounded-lg px-3 py-2 focus:outline-none transition focus:ring-2 text-[#4B0082] bg-white ${errors.password ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-[#D8B4FE]'}`}
+                  className={`w-full pl-10 pr-10 border rounded-lg px-3 py-2 focus:outline-none transition focus:ring-2 text-[#4B0082] bg-white dark:bg-gray-900 dark:text-white ${
+                    errors.password ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-[#D8B4FE]'
+                  }`}
                 />
                 <button
                   type="button"
@@ -89,13 +92,25 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={!isValid || isLoggingIn}
-              className={`w-full ${isValid ? 'bg-[#A78BFA] hover:bg-[#8B5CF6] cursor-pointer' : 'bg-[#E9D8FD] cursor-not-allowed'} text-white font-semibold py-2.5 rounded-lg transition-all shadow-md`}
+              className={`w-full flex justify-center items-center gap-2 ${
+                isValid ? 'bg-[#A78BFA] hover:bg-[#8B5CF6] cursor-pointer' : 'bg-[#E9D8FD] cursor-not-allowed'
+              } text-white font-semibold py-2.5 rounded-lg transition-all shadow-md`}
             >
-              {isLoggingIn ? 'Logging In...' : 'Log In'}
+              {isLoggingIn ? (
+                <>
+                  <svg className="w-5 h-5 animate-spin text-white" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                  </svg>
+                  Logging In...
+                </>
+              ) : (
+                'Log In'
+              )}
             </button>
 
             {/* Don't have an account? */}
-            <p className="text-sm text-center text-[#4B0082]">
+            <p className="text-sm text-center text-[#4B0082] dark:text-gray-300">
               Don’t have an account?
               <Link to="/signup" className="text-[#8B5CF6] hover:underline font-medium ml-1">
                 Sign Up
@@ -105,14 +120,14 @@ const LoginPage = () => {
         </div>
 
         {/* Right Side - Auth Image */}
-        <div className="hidden md:flex w-1/2 bg-[#F3E8FF] flex-col items-center justify-center p-8 text-center">
+        <div className="hidden md:flex w-1/2 bg-[#F3E8FF] dark:bg-gray-700 flex-col items-center justify-center p-8 text-center">
           <img
             src="/authenticationImage.jpg"
             alt="Authentication Illustration"
             className="max-w-full h-auto object-contain"
           />
-          <h2 className="text-2xl font-semibold text-[#4B0082] mb-2">Welcome Back</h2>
-          <p className="text-[#6B21A8] text-sm max-w-xs">
+          <h2 className="text-2xl font-semibold text-[#4B0082] dark:text-white mb-2">Welcome Back</h2>
+          <p className="text-[#6B21A8] dark:text-gray-300 text-sm max-w-xs">
             Log in to continue chatting with your friends in real time!
           </p>
         </div>

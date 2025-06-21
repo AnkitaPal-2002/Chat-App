@@ -18,13 +18,21 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import './App.css'
 import { useAuthStore } from './store/useAuthStore';
 import { Toaster } from 'react-hot-toast';
+import useThemeStore from './store/useThemeStore';
 
 function App() {
  const {authUser, checkAuth, isCheckingAuth} = useAuthStore();
+ const { theme } = useThemeStore();
 
  useEffect(()=>{
   checkAuth();
  }, [checkAuth]);
+
+ useEffect(() => {
+  const root = document.documentElement; // <html>
+  root.classList.remove('light', 'dark');
+  root.classList.add(theme);
+}, [theme]);
 
  console.log(authUser);
 
@@ -39,7 +47,8 @@ function App() {
  
 
   return (
-    <div className="App">
+    <div className="App min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
       <Navbar />
       <Routes>
 
