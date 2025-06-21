@@ -7,7 +7,8 @@ dotenv.config();
 
 import connectDB from "./lib/db.js";
 
-import userAuthRoutes from "./routes/user/userAuth.route.js";
+import userRoutes from "./routes/user/user.route.js";
+import userAuthRoutes from "./routes/auth/auth.route.js";
 import messageRoutes from "./routes/message/message.route.js";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors({
     credentials: true,
 }));
 
+app.use("/api/users", userRoutes);
 app.use("/api/user/auth", userAuthRoutes);
 app.use("/api/message", messageRoutes);
 

@@ -1,5 +1,7 @@
 import React from 'react';
+import { Moon } from 'lucide-react';
 import useThemeStore from '../../store/useThemeStore';
+
 
 const SettingsPage = () => {
   const { theme, toggleTheme } = useThemeStore();
@@ -28,7 +30,7 @@ const SettingsPage = () => {
             aria-label="Toggle Theme"
           >
             <span className="absolute left-1 text-yellow-400 text-lg">☀️</span>
-            <span className="absolute right-1 text-white text-lg">🌙</span>
+            <span className="absolute right-1 text-blue-900 text-lg"><Moon strokeWidth={0} fill='currentColor'/></span>
             <span
               className={`w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
                 theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
